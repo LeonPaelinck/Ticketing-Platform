@@ -1,0 +1,10 @@
+﻿@page
+@model LockoutModel
+@{
+    ViewData["Title"] = "Uw account werd voor 30 minuten geblokkeerd";
+}
+
+<header>
+    <h1 class="text-danger">@ViewData["Title"]</h1>
+    <p class="text-danger">U heeft het maximum aantal aanmeldpogingen bereikt, probeer later opnieuw.</p>
+</header>

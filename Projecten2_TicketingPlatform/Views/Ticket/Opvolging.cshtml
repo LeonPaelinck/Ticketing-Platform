@@ -1,0 +1,41 @@
+﻿@model Projecten2_TicketingPlatform.Models.TicketViewModels.OpvolgingViewModel
+
+@{
+    ViewData["Title"] = "Opvolging";
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
+            <div class="form-group">
+                <label asp-for="Kwaliteit" class="control-label"></label>
+                <input asp-for="Kwaliteit" class="form-control" type="range" min="1" max="5" value="3"/>
+                <span asp-validation-for="Kwaliteit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oplossing" class="control-label"></label>
+                <input asp-for="Oplossing" class="form-control" type="checkbox"/>
+                <span asp-validation-for="Oplossing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupportNodig" class="control-label"></label>
+                <input asp-for="SupportNodig" class="form-control" type="checkbox">
+                <span asp-validation-for="SupportNodig" class="text-danger"></span>
+            </div>   
+            <div class="form-group">
+                <button class="btn btn-secondary" type="submit">Opslaan</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Terug naar de lijst</a>
+</div>

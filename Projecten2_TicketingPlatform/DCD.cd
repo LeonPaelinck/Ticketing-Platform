@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Projecten2_TicketingPlatform.Models.Domein.Ticket">
+    <Position X="6.25" Y="7.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACGAAAAQMAAAAgAAAAAEAAAAAAAAAAAIEBQIAA=</HashCode>
+      <FileName>Models\Domein\Ticket.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Status" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Projecten2_TicketingPlatform.Models.Domein.Contract">
+    <Position X="6.25" Y="1" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAgAAAAAEAACAAEAKAAgAABAAAAAA=</HashCode>
+      <FileName>Models\Domein\Contract.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ContractType" />
+      <Property Name="ContractStatus" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Projecten2_TicketingPlatform.Models.Domein.ContractType">
+    <Position X="6.25" Y="4.5" Width="5" />
+    <AssociationLine Name="Status" Type="Projecten2_TicketingPlatform.ContractEnContractTypeStatus" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.938" Y="4.5" />
+        <Point X="10.938" Y="2.625" />
+        <Point X="13.5" Y="2.625" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ACAAAACFAgAAAAAAAACABAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\Domein\ContractType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Status" />
+      <Property Name="ManierVanAanmakenTicket" />
+      <Property Name="TijdstipTicketAanmaken" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Projecten2_TicketingPlatform.Models.Domein.KnowledgeBase">
+    <Position X="6.25" Y="12.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAEAAAAAAAAAAIAAQAAA=</HashCode>
+      <FileName>Models\Domein\KnowledgeBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Projecten2_TicketingPlatform.Models.Domein.ITicketRepository">
+    <Position X="1" Y="7.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAAAAAAAAAAAAAAAEAAAAAEAAABAAgAAAAAAAoA=</HashCode>
+      <FileName>Models\Domein\ITicketRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Projecten2_TicketingPlatform.Models.Domein.IContractRepository">
+    <Position X="1" Y="1" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoA=</HashCode>
+      <FileName>Models\Domein\IContractRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Projecten2_TicketingPlatform.Models.Domein.IContractTypeRepository">
+    <Position X="1" Y="4.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\Domein\IContractTypeRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Projecten2_TicketingPlatform.Models.Domein.IKnowledgeBaseRepository">
+    <Position X="1" Y="12.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Domein\IKnowledgeBaseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Projecten2_TicketingPlatform.TicketStatus">
+    <Position X="13.5" Y="7.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAYAAAEAAAAAAAAAAAAAAQAAIBAAABAAEA=</HashCode>
+      <FileName>Models\Domein\TicketStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Projecten2_TicketingPlatform.ContractEnContractTypeStatus">
+    <Position X="13.5" Y="1" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AgAACAAAAAAQAAAAAAAAAAgAABAAAAQAAAAAAABAAAA=</HashCode>
+      <FileName>Models\Domein\ContractEnContractTypeStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Projecten2_TicketingPlatform.Models.Domein.ManierVanAanmakenTicket">
+    <Position X="13.5" Y="3.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAQAgAAAAgAIAAAQAAAABA=</HashCode>
+      <FileName>Models\Domein\ManierVanAanmakenTicket.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Projecten2_TicketingPlatform.Models.Domein.TijdstipTicketAanmaken">
+    <Position X="13.5" Y="5.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domein\TijdstipTicketAanmaken.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

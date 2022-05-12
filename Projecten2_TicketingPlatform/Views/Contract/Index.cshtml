@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Projecten2_TicketingPlatform.Models.Domein.Contract>
+
+@{
+    ViewData["Title"] = "Contracten";
+}
+
+<h1>@ViewData["Title"]</h1>
+<form>
+    <div class="form-inline">
+        <div class="form-group">
+            <label for="contractStatus"></label>
+            <select id="contractStatus" name="contractStatus" asp-items="Html.GetEnumSelectList<ContractEnContractTypeStatus>()" class="form-control" onchange="this.form.submit()">
+                <option selected="selected" value="">-- Contract status --</option>
+            </select>
+        </div>
+        <a asp-controller="Contract" asp-action="Create" class="btn btn-secondary text-right ml-5">Nieuw Contract Aanvragen</a>
+    </div><br />
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractId)
+            </th>
+
+            <th>
+                Type Contract
+            </th>
+            <th>
+                Start Datum
+            </th>
+            <th>
+                Eind Datum
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractType.Naam)
+            </td>
+            <td>
+                @(item.StartDatum.ToString("dd/MM/yyyy"))
+            </td>
+            <td>
+                @(item.EindDatum.ToString("dd/MM/yyyy"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractStatus)
+            </td>
+            <td>
+                @if (!(item.ContractStatus == ContractEnContractTypeStatus.Stopgezet || item.ContractStatus == ContractEnContractTypeStatus.NietActief || item.ContractStatus == ContractEnContractTypeStatus.Afgelopen))
+                {
+                    <span><a asp-controller="Contract" asp-action="Annuleer" asp-route-contractId="@item.ContractId">Stopzetten</a></span>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

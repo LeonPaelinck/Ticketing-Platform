@@ -1,0 +1,79 @@
+﻿@model Projecten2_TicketingPlatform.Models.Domein.Ticket
+
+@{
+    ViewData["Title"] = "Ticket annuleren";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Zeker dat u dit ticket wilt annuleren?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Titel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Titel)
+        </dd>
+        <dt class = "col-sm-2">
+            TicketId
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ticketid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            Datum
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.DatumAanmaken.ToString("dd/MM/yyyy"))
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Omschrijving)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Omschrijving)
+        </dd>
+        <dt class = "col-sm-2">
+            Ticket Type
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TypeTicket)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KlantId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KlantId)
+        </dd>
+        <dt class = "col-sm-2">
+            Technieker
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TechniekerId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Opmerkingen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Opmerkingen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Bijlage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Bijlage)
+        </dd>
+    </dl>
+    
+    <form asp-action="AnnuleerConfirmed" asp-route-ticketId=@Model.Ticketid>
+        <input type="submit" value="Bevestig annulatie" class="btn btn-danger" /> <br />
+        <a asp-action="Index">Terug naar de lijst</a>
+    </form>
+</div>

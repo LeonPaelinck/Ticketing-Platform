@@ -1,0 +1,149 @@
+﻿@model IEnumerable<Projecten2_TicketingPlatform.Models.Domein.Ticket>
+
+@{
+    ViewData["Title"] = "Tickets beheren";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<form>
+    <div class="form-inline">
+        <div class="form-group">
+            <label for="ticketStatus"></label>
+            <select id="ticketStatus" name="ticketStatus" asp-items="Html.GetEnumSelectList<TicketStatus>()" class="form-control" onchange="this.form.submit()">
+                <option selected="selected" value="">-- @TempData["TicketStatus"] --</option>
+            </select>
+        </div>
+        <a asp-controller="Ticket" asp-action="Create" class="btn btn-secondary text-right ml-5">Nieuw Ticket</a>
+    </div><br />
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 25%">
+                @Html.DisplayNameFor(model => model.Titel)
+            </th>
+            <th style="width: 20%">
+                Datum
+            </th>
+            <th style="width: 25%">
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th style="width: 30%">
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int collapseId = 1;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titel)
+                </td>
+                <td>
+                    @(item.DatumAanmaken.ToString("dd/MM/yyyy"))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td style="text-align:right">
+                    @if ((item.Status == TicketStatus.Afgehandeld))
+                    {
+                        <span><a asp-controller="Ticket" asp-action="Opvolging" asp-route-ticketId="@item.Ticketid">Opvolgen</a> | </span>
+                    }
+                    @if (!(item.Status == TicketStatus.Geannuleerd || item.Status == TicketStatus.Afgehandeld))
+                    {<span><a asp-controller="Ticket" asp-action="Edit" asp-route-ticketId="@item.Ticketid">Bewerken</a> | </span>
+                        <span><a asp-controller="Ticket" asp-action="Annuleer" asp-route-ticketId="@item.Ticketid">Annuleren</a> | </span>
+                    }
+                    <span><a data-toggle="collapse" href="#collapse_@collapseId" role="button" aria-expanded="false">Details</a></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div class="collapse" id="collapse_@collapseId">
+                        <div class="card card-body">
+                            <dl class="row">
+                                <dt class="col-sm-2">
+                                    TicketId
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => item.Ticketid)
+
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(modelItem => item.Omschrijving)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => item.Omschrijving)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    Ticket Type
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => item.TypeTicket)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(modelItem => item.KlantId)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => item.KlantId)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    Technieker
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => item.TechniekerId) 
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(modelItem => item.Opmerkingen)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => item.Opmerkingen)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(modelItem => item.Bijlage)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @{
+                                        string bijlagePad = "~/Bijlagen/" + (item.Bijlage ?? "geenBijlage.txt");
+                                        string bijlageNaam = bijlagePad.Split('/').Last().Split('?').First();
+
+                                    }
+                                    @if (item.Bijlage is null)
+                                    {
+                                        <p><i>Geen bijlage</i></p>
+                                    }
+                                    else
+                                    @if (bijlageNaam.ToLower().EndsWith(".jpg") ||
+                                       bijlageNaam.ToLower().EndsWith(".jpeg") ||
+                                       bijlageNaam.ToLower().EndsWith(".pjpeg") ||
+                                       bijlageNaam.ToLower().EndsWith(".gif") ||
+                                       bijlageNaam.ToLower().EndsWith(".x-png") ||
+                                       bijlageNaam.ToLower().EndsWith(".png"))
+                                    {
+                                        <img src="@bijlagePad" style="min-width: 18rem; max-width: 60%" alt=@item.Bijlage geen bijlage asp-append-version="true" />
+                                    }
+                                    else @if (bijlagePad.ToLower().EndsWith(".pdf"))
+                                    {
+                                    <a asp-controller="Ticket" asp-action="GetPdf" asp-route-filepath="@bijlagePad" asp-route-filename="@item.Bijlage" target="_blank">@bijlageNaam</a>
+                                    }
+                                    else
+                                    {
+                                        <p>@bijlageNaam</p>
+                                    }
+
+
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            collapseId++;
+        }
+    </tbody>
+</table>
+

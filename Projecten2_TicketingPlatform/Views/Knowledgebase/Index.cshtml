@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Projecten2_TicketingPlatform.Models.Domein.KnowledgeBase>
+
+@{
+    ViewData["Title"] = "Knowledge base";
+    ViewData["SearchString"] = @TempData["SearchString"];
+}
+
+<h1>@ViewData["Title"]</h1>    
+    <form asp-controller="KnowledgeBase" asp-action="Index">
+        <div class="input-group my-3" style="max-width: 400px">
+            <input class="form-control" type="text" value=@ViewData["SearchString"] aria-label="Search" name="SearchString" placeholder="Error2087">
+            <div class="input-group-append">
+                <button class="btn btn-secondary" type="submit">Zoek</button>
+            </div>
+        </div>
+    </form>
+<table class="table table-striped ">   
+    <tbody>
+        @{ int collapseId = 1;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td data-toggle="collapse" href="#collapse_@collapseId" role="button" aria-expanded="false" style="cursor: pointer;" >
+                    <h6>@Html.DisplayFor(modelItem => item.Titel)</h6> 
+                </td>                
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div class="collapse" id="collapse_@collapseId">
+                        <div class="card card-body">                            
+                            @Html.DisplayFor(modelItem => item.Omschrijving)
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            collapseId++;
+        }
+    </tbody>
+</table>
+

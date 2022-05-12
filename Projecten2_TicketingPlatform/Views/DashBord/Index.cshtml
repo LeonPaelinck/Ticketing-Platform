@@ -1,0 +1,183 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Welkom @User.Identity.Name</h1>
+
+@if (this.User.IsInRole("klant"))
+{
+    <div class="container">
+        <div class="row justify-content-around ">
+            <div class="col-lg-5 m-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="Contract" asp-action="Index">
+                    <div class="align-self-center my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-file-earmark-text mx-4" viewBox="0 0 16 16">
+                            <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
+                            <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                        </svg>
+                    </div>
+                    <div class="media-body text-center mb-4">
+                        <h4 fill="currentColor">Contracten </h4>
+                        @{ if (TempData["ContractVerloopt"] != null)
+                            {
+                                <span class="badge bg-light">@TempData["ContractVerloopt"]</span>
+                            }
+                          }
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-5 m-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="KnowledgeBase" asp-action="Index">
+                    <div class="align-self-center my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-file-earmark-text mx-4" viewBox="0 0 16 16">
+                            <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                    </div>
+                    <div class="media-body text-center mb-4">
+                        <h4 fill="currentColor">Knowledge base</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row justify-content-around">
+            <div class="col-lg-5 m-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="Statistiek" asp-action="Index">
+                    <div class="align-self-center my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-file-earmark-text mx-4" viewBox="0 0 16 16">
+                            <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z" />
+                        </svg>
+                    </div>
+                    <div class="media-body text-center mb-4">
+                        <h4 fill="currentColor">Statistieken</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-5 m-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="Ticket" asp-action="Index">
+                    <div class="align-self-center my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-file-earmark-text mx-4" viewBox="0 0 16 16">
+                            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                            <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                    </div>
+                    <div class="media-body text-center mb-4">
+                        <h4 fill="currentColor">Tickets beheren</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+@if (this.User.IsInRole("technieker"))
+{
+    <div class="container">
+        <div class="row justify-content-around ">
+            <div class="col-lg-11 m-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="Ticket" asp-action="Index">
+                    <div class="align-self-center my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-file-earmark-text mx-4" viewBox="0 0 16 16">
+                            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                            <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                    </div>
+                    <div class="media-body text-center mb-4">
+                        <h4 fill="currentColor">Tickets beheren</h4>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        <div class="row justify-content-around">
+            <div class="col-lg-5 m-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="Statistiek" asp-action="Index">
+                    <div class="align-self-center my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-file-earmark-text mx-4" viewBox="0 0 16 16">
+                            <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z" />
+                        </svg>
+                    </div>
+                    <div class="media-body text-center mb-4">
+                        <h4 fill="currentColor">Statistieken</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-5 m-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="KnowledgeBase" asp-action="Index">
+                    <div class="align-self-center my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-file-earmark-text mx-4" viewBox="0 0 16 16">
+                            <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                    </div>
+                    <div class="media-body text-center mb-4">
+                        <h4 fill="currentColor">Knowledge base</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+@if (this.User.IsInRole("supportmanager"))
+{
+    <div class="container">
+        <div class="row justify-content-around ">
+            <div class="col-lg-11 m-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="Ticket" asp-action="Index">
+                    <div class="align-self-center my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-file-earmark-text mx-4" viewBox="0 0 16 16">
+                            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                            <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                    </div>
+                    <div class="media-body text-center mb-4">
+                        <h4 fill="currentColor">Tickets beheren</h4>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        <div class="row justify-content-around">
+            <div class="col-lg-5 m-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="Statistiek" asp-action="Index">
+                    <div class="align-self-center my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-file-earmark-text mx-4" viewBox="0 0 16 16">
+                            <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z" />
+                        </svg>
+                    </div>
+                    <div class="media-body text-center mb-4">
+                        <h4 fill="currentColor">Statistieken</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-5 m-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="KnowledgeBase" asp-action="Index">
+                    <div class="align-self-center my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-file-earmark-text mx-4" viewBox="0 0 16 16">
+                            <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                    </div>
+                    <div class="media-body text-center mb-4">
+                        <h4 fill="currentColor">Knowledge base</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+@if (this.User.IsInRole("administrator"))
+{
+    <div class="container">
+        <div class="row mt-5 row justify-content-around">
+            <div class="col-sm-6 col-md-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="Klant" asp-action="Index">Klanten Beheren</a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <a class="btn btn-outline-primary btn-lg btn-block" asp-area="" asp-controller="Werknemers" asp-action="Index">Werknemers Beheren</a>
+            </div>
+        </div>
+    </div>
+}

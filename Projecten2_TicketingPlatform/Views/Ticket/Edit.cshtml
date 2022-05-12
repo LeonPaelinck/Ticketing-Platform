@@ -1,0 +1,92 @@
+﻿@model Projecten2_TicketingPlatform.Models.TicketViewModels.EditViewModel
+
+@{
+    ViewData["Title"] = (bool)ViewData["IsEdit"] ? "Bewerk Ticket" : "Maak Ticket aan";
+    ViewData["Bijlage"] = @Model.BijlagePad ?? "Kies bestand..";
+
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (this.User.IsInRole("supportmanager"))
+            {
+            <div class="form-group">
+                <label asp-for="KlantId" class="control-label"></label>
+                <input asp-for="KlantId" class="form-control" />
+                <span asp-validation-for="KlantId" class="text-danger"></span>
+            </div>
+            }
+            <div class="form-group">
+                <label asp-for="Titel" class="control-label"></label>
+                <input asp-for="Titel" class="form-control" readonly="@ViewData["IsEdit"]" />
+                <span asp-validation-for="Titel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumAanmaken" class="control-label"></label>
+                <input asp-for="DatumAanmaken" class="form-control" readonly="@ViewData["IsEdit"]" />
+                <span asp-validation-for="DatumAanmaken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Omschrijving" class="control-label"></label>
+                <textarea asp-for="Omschrijving" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Omschrijving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeTicket" class="control-label"></label>
+                <select asp-for="TypeTicket" asp-items=@(ViewData["TicketType"] as SelectList) class="form-control">
+                </select>
+                <span asp-validation-for="TypeTicket" class="text-danger"></span>
+            </div>
+            @*            <div class="form-group">
+                    <label asp-for="Technieker" class="control-label"></label>
+                    <input asp-for="Technieker" class="form-control" />
+                    <span asp-validation-for="Technieker" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Opmerkingen" class="control-label"></label>
+                    <input asp-for="Opmerkingen" class="form-control" />
+                    <span asp-validation-for="Opmerkingen" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="Bijlage" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="Bijlage" class="form-control custom-file-input" />
+                    <label class="custom-file-label">@ViewData["Bijlage"]</label>
+                    <span asp-validation-for="Bijlage" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <button class="btn btn-secondary" type="submit">Opslaan</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Terug naar de lijst</a>
+</div>
+
+@section Scripts {
+    <script>
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            })
+        });
+    </script>
+}

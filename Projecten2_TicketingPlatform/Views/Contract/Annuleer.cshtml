@@ -1,0 +1,58 @@
+﻿@model Projecten2_TicketingPlatform.Models.Domein.Contract
+
+@{
+    ViewData["Title"] = "Stopzetten contract";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Zeker dat je dit contract wilt stopzetten?</h3>
+<div>
+    <h4>Contract</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            Type Contract
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContractType.Naam)
+        </dd>
+        <dt class="col-sm-2">
+           Start Datum
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.StartDatum.ToString("dd/MM/yyyy"))
+        </dd>
+        <dt class="col-sm-2">
+            Eind Datum
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.EindDatum.ToString("dd/MM/yyyy"))
+        </dd>
+        <dt class="col-sm-2">
+            KlantId
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ClientId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Doorlooptijd)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Doorlooptijd)
+        </dd>
+        <dt class="col-sm-2">
+            Status
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContractStatus)
+        </dd>
+    </dl>
+    
+    <form asp-action="AnnuleerConfirmed">
+        <input type="hidden" asp-for="ContractId" />
+        <input type="submit" value="Bevestig stopzetten" class="btn btn-danger" /> |
+        <a asp-action="Index">Terug naar de lijst</a>
+    </form>
+</div>
